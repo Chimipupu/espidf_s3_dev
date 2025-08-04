@@ -5,5 +5,24 @@
   "idf.pythonInstallPath": "c:\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
   "idf.openOcdConfigs": [
     "board/esp32s3-builtin.cfg"
-  ]
+  ],
+  "idf.portWin": "COM46",
+  "idf.flashType": "UART",
+  "idf.customExtraVars": {
+    "OPENOCD_SCRIPTS": "c:\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20240318/openocd-esp32/share/openocd/scripts",
+    "IDF_CCACHE_ENABLE": "1",
+    "ESP_ROM_ELF_DIR": "c:\\.espressif\\tools\\esp-rom-elfs\\20240305/",
+    "IDF_TARGET": "esp32s3"
+  },
+  "clangd.path": "c:\\.espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=c:\\.espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20241119\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe",
+    "--compile-commands-dir=c:\\dev_work\\git\\my\\espidf_s3_dev\\src\\hello_world\\build"
+  ],
+  "files.associations": {
+    "*.dpf": "yaml",
+    "*.html": "html",
+    "app_cpu_core_1.h": "c"
+  }
 }
