@@ -9,10 +9,30 @@
  * 
  */
 #include "app_cpu_core_1.h"
+#include "esp_heap_caps.h"
 
 esp_chip_info_t g_chip_info;
 
+static void psram_test(void);
 static void show_chip_info(void);
+
+static void psram_test(void)
+{
+    size_t size = 1024 * 10; // 10KB確保
+
+    // PSRAM領域からメモリを確保する（8bitアクセス可能なPSRAM）
+    void* psram_ptr = heap_caps_malloc(size, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+    if (psram_ptr == NULL) {
+        printf("PSRAM malloc failed\n");
+    } else {
+        printf("PSRAM malloc succeeded: %p\n", psram_ptr);
+        // メモリ使用例
+        memset(psram_ptr, 0, size);
+
+        // 確保したメモリを解放
+        heap_caps_free(psram_ptr);
+    }
+}
 
 static void show_chip_info(void)
 {
@@ -39,6 +59,7 @@ static void show_chip_info(void)
 void app_core_1_main_init(void)
 {
     show_chip_info();
+    psram_test();
 }
 
 /**
@@ -52,6 +73,7 @@ void app_core_1_main(void)
     while(1)
     {
         printf("[DEBUG] ESP-IDF Develop\n");
+        psram_test();
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
